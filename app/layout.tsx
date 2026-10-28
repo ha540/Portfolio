@@ -9,7 +9,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: 'EDIT VISUALS — Alex Carter | Video Editor & Storyteller',
+  title: 'YOF EDIT — Haile Getachew | Video Editor & Storyteller',
   description:
     'I turn raw footage into compelling stories. Creative video editing, smooth transitions, cinematic visuals and storytelling that makes an impact.',
 };
@@ -20,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -29,7 +29,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="antialiased bg-[#0a0d14] text-white selection:bg-[#ff5500] selection:text-white overflow-x-hidden">
+      <body suppressHydrationWarning className="antialiased bg-[#0a0d14] text-white selection:bg-[#ff5500] selection:text-white overflow-x-hidden">
         {children}
       </body>
     </html>

@@ -19,6 +19,7 @@ import {
   X,
   CheckCircle2,
   Menu,
+  Download,
 } from 'lucide-react';
 
 // Brand Social Icons
@@ -60,7 +61,7 @@ function BehanceIcon({ className = 'w-4 h-4' }: { className?: string }) {
 interface Project {
   id: string;
   title: string;
-  category: 'Commercial' | 'YouTube' | 'Social Media' | 'Events';
+  category: 'Short Videos' | 'Long Videos' | 'Graphics' | 'Events';
   tags: string;
   image: string;
   videoUrl?: string;
@@ -69,10 +70,30 @@ interface Project {
 
 const projects: Project[] = [
   {
+    id: 'coca-health-tiktok',
+    title: 'Coca Health TikTok Short',
+    category: 'Short Videos',
+    tags: 'Short Videos • TikTok / Reels',
+    image: '/images/project-coca-tiktok.jpg',
+    videoUrl: '/videos/coca-health-tiktok.mp4',
+    description:
+      'High-impact vertical short-form edit created for social platforms, featuring rapid visual hooks, dynamic sound design, and retention-focused motion cuts.',
+  },
+  {
+    id: 'viral-social-short',
+    title: 'Viral Social Media Short',
+    category: 'Short Videos',
+    tags: 'Short Videos • Social Media',
+    image: '/images/project-social-short.jpg',
+    videoUrl: '/videos/short-social-media.mp4',
+    description:
+      'Snappy vertical promo video optimized for TikTok, Instagram Reels, and YouTube Shorts with rhythm-matched pacing and modern color grading.',
+  },
+  {
     id: 'travel-iceland',
     title: 'Travel Vlog – Iceland',
-    category: 'YouTube',
-    tags: 'YouTube • Travel',
+    category: 'Long Videos',
+    tags: 'Long Videos • Travel',
     image: '/images/project-iceland.jpg',
     videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1',
     description:
@@ -81,8 +102,8 @@ const projects: Project[] = [
   {
     id: 'car-commercial',
     title: 'Car Commercial',
-    category: 'Commercial',
-    tags: 'Commercial • Brand',
+    category: 'Short Videos',
+    tags: 'Short Videos • Brand',
     image: '/images/project-car.jpg',
     videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1',
     description:
@@ -91,8 +112,8 @@ const projects: Project[] = [
   {
     id: 'music-video',
     title: 'Music Video',
-    category: 'Commercial',
-    tags: 'Music • Creative',
+    category: 'Short Videos',
+    tags: 'Short Videos • Creative',
     image: '/images/project-music.jpg',
     videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1',
     description:
@@ -108,11 +129,21 @@ const projects: Project[] = [
     description:
       'An emotionally resonant cinematic wedding teaser balancing intimate vow recordings with warm golden-hour cinematography and gentle orchestral pacing.',
   },
+  {
+    id: 'motion-graphics',
+    title: 'Dynamic Graphics & Titles',
+    category: 'Graphics',
+    tags: 'Graphics • Visual FX',
+    image: '/images/card-edit-full.png',
+    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1',
+    description:
+      'High-impact kinetic typography, lower thirds, logo reveals, and custom broadcast motion graphic packages.',
+  },
 ];
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState('home');
-  const [activeFilter, setActiveFilter] = useState<'All' | 'Commercial' | 'YouTube' | 'Social Media' | 'Events'>('All');
+  const [activeFilter, setActiveFilter] = useState<'All' | 'Short Videos' | 'Long Videos' | 'Graphics' | 'Events'>('All');
   const [selectedVideo, setSelectedVideo] = useState<Project | null>(null);
   const [showreelModalOpen, setShowreelModalOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -180,14 +211,14 @@ export default function Home() {
           <button
             onClick={() => scrollTo('home')}
             className="flex items-center gap-3 text-left group cursor-pointer focus:outline-none"
-            aria-label="Edit Visuals Home"
+            aria-label="YOF EDIT Home"
           >
             <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#ff6b2b] to-[#ff5500] flex items-center justify-center shadow-lg shadow-orange-500/25 group-hover:scale-105 transition-transform">
               <Play className="w-5 h-5 text-white fill-white ml-0.5" />
             </div>
             <div>
               <div className="font-extrabold text-base tracking-wider text-white uppercase leading-none group-hover:text-orange-400 transition-colors">
-                EDIT VISUALS
+                YOF EDIT
               </div>
               <div className="text-[9px] font-semibold text-neutral-400 tracking-[0.2em] uppercase mt-1">
                 VIDEO EDITOR PORTFOLIO
@@ -319,17 +350,18 @@ export default function Home() {
             {/* Right Hero Image (Editor in Studio) */}
             <div className="lg:col-span-7 relative">
               <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl group">
-                <div className="relative aspect-[16/10] w-full bg-[#11141c]">
+                <div className="relative aspect-[16/10] sm:aspect-[4/3] lg:aspect-[16/11] w-full bg-[#11141c]">
                   <Image
-                    src="/images/hero-editor.jpg"
-                    alt="Alex Carter Video Editor in workspace suite"
+                    src="/images/hero-editor-yof.jpg"
+                    alt="Haile Getachew Video Editor in workspace suite"
                     fill
                     priority
+                    sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover object-center group-hover:scale-102 transition-transform duration-700"
                   />
                   {/* Subtle warm amber/blue studio overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0c0e14] via-transparent to-transparent opacity-60" />
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#0c0e14]/40 via-transparent to-black/30 pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0c0e14] via-transparent to-transparent opacity-50" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#0c0e14]/30 via-transparent to-black/20 pointer-events-none" />
                 </div>
               </div>
 
@@ -363,7 +395,7 @@ export default function Home() {
 
             {/* Filter Tabs */}
             <div className="flex flex-wrap items-center gap-2">
-              {(['All', 'Commercial', 'YouTube', 'Social Media', 'Events'] as const).map((filter) => (
+              {(['All', 'Short Videos', 'Long Videos', 'Graphics', 'Events'] as const).map((filter) => (
                 <button
                   key={filter}
                   onClick={() => setActiveFilter(filter)}
@@ -436,20 +468,21 @@ export default function Home() {
             {/* Left Column: Portrait with Signature */}
             <div className="lg:col-span-4 flex justify-center">
               <div className="relative w-full max-w-sm rounded-2xl overflow-hidden shadow-2xl bg-slate-900 border border-slate-200">
-                <div className="relative aspect-[4/5] w-full">
+                <div className="relative aspect-square w-full">
                   <Image
-                    src="/images/alex-carter.jpg"
-                    alt="Alex Carter - Video Editor"
+                    src="/images/haile-profile-new.jpg"
+                    alt="Haile Getachew - Video Editor"
                     fill
-                    className="object-cover object-top"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover object-center"
                   />
                   {/* Subtle bottom vignette for signature */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
                   
                   {/* Glowing Orange Signature */}
-                  <div className="absolute bottom-4 right-5 text-right">
+                  <div className="absolute bottom-4 right-5 text-right pointer-events-none">
                     <span className="font-signature text-3xl sm:text-4xl text-[#ff681a] tracking-wider drop-shadow-md select-none transform -rotate-3 block">
-                      Alex Carter
+                      Haile Getachew
                     </span>
                   </div>
                 </div>
@@ -463,7 +496,7 @@ export default function Home() {
                   ABOUT ME
                 </div>
                 <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight leading-tight">
-                  Hi, I&apos;m Alex Carter
+                  Hi, I&apos;m Haile Getachew
                 </h2>
                 <div className="text-base sm:text-lg font-bold text-slate-700 mt-1">
                   Video Editor &amp; Storyteller
@@ -662,23 +695,23 @@ export default function Home() {
               {/* Direct Info List */}
               <div className="space-y-4 pt-1">
                 <a
-                  href="mailto:alex@editvisuals.com"
+                  href="mailto:getachewhaile32@gmail.com"
                   className="flex items-center gap-3 text-slate-700 hover:text-[#ff5500] transition-colors group"
                 >
                   <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 group-hover:bg-orange-50 group-hover:text-[#ff5500] transition-colors">
                     <Mail className="w-4 h-4" />
                   </div>
-                  <span className="text-xs sm:text-sm font-medium">alex@editvisuals.com</span>
+                  <span className="text-xs sm:text-sm font-medium">getachewhaile32@gmail.com</span>
                 </a>
 
                 <a
-                  href="tel:+251912345678"
+                  href="tel:+251918135151"
                   className="flex items-center gap-3 text-slate-700 hover:text-[#ff5500] transition-colors group"
                 >
                   <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 group-hover:bg-orange-50 group-hover:text-[#ff5500] transition-colors">
                     <Phone className="w-4 h-4" />
                   </div>
-                  <span className="text-xs sm:text-sm font-medium">+251 912 345 678</span>
+                  <span className="text-xs sm:text-sm font-medium">+251 918 135 151</span>
                 </a>
 
                 <div className="flex items-center gap-3 text-slate-700">
@@ -845,7 +878,7 @@ export default function Home() {
               <Play className="w-3.5 h-3.5 fill-white ml-0.5" />
             </div>
             <span className="font-bold tracking-wider text-white uppercase text-xs">
-              EDIT VISUALS
+              YOF EDIT
             </span>
             <span className="text-[10px] text-neutral-500 hidden md:inline-block">
               VIDEO EDITOR PORTFOLIO
@@ -854,7 +887,7 @@ export default function Home() {
 
           {/* Center: Copyright */}
           <div className="text-center text-neutral-500">
-            © 2025 Edit Visuals. All rights reserved.
+            © 2025 YOF EDIT. All rights reserved.
           </div>
 
           {/* Right: Social Media */}
@@ -903,76 +936,127 @@ export default function Home() {
       {/* ─────────────────────────────────────────────────────────────
           8. VIDEO PREVIEW MODAL
       ───────────────────────────────────────────────────────────── */}
-      {(selectedVideo || showreelModalOpen) && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 animate-fadeIn"
-          onClick={() => {
-            setSelectedVideo(null);
-            setShowreelModalOpen(false);
-          }}
-        >
+      {(selectedVideo || showreelModalOpen) && (() => {
+        const videoSrc = showreelModalOpen
+          ? 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1'
+          : selectedVideo?.videoUrl || 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1';
+        const isDirectVideo = videoSrc.endsWith('.mp4');
+        const isShortVertical = selectedVideo?.category === 'Short Videos' && isDirectVideo;
+
+        return (
           <div
-            className="relative w-full max-w-4xl bg-[#11141c] border border-white/10 rounded-2xl overflow-hidden shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-md p-4 animate-fadeIn"
+            onClick={() => {
+              setSelectedVideo(null);
+              setShowreelModalOpen(false);
+            }}
           >
-            {/* Modal Header */}
-            <div className="flex items-center justify-between p-4 border-b border-white/10 bg-[#0c0e14]">
-              <div>
-                <h3 className="text-base font-bold text-white">
-                  {showreelModalOpen ? 'Alex Carter — 2025 Video Editing Showreel' : selectedVideo?.title}
-                </h3>
-                <p className="text-xs text-neutral-400">
-                  {showreelModalOpen ? 'Cinematic Highlights & Transitions' : selectedVideo?.tags}
-                </p>
+            <div
+              className={`relative w-full ${
+                isShortVertical ? 'max-w-md' : 'max-w-4xl'
+              } bg-[#11141c] border border-white/10 rounded-2xl overflow-hidden shadow-2xl transition-all duration-300`}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Modal Header */}
+              <div className="flex items-center justify-between p-4 border-b border-white/10 bg-[#0c0e14]">
+                <div className="pr-3 min-w-0">
+                  <h3 className="text-base font-bold text-white truncate">
+                    {showreelModalOpen ? 'Haile Getachew — 2025 Video Editing Showreel' : selectedVideo?.title}
+                  </h3>
+                  <p className="text-xs text-neutral-400">
+                    {showreelModalOpen ? 'Cinematic Highlights & Transitions' : selectedVideo?.tags}
+                  </p>
+                </div>
+
+                <div className="flex items-center gap-2 shrink-0">
+                  {isDirectVideo && (
+                    <a
+                      href={videoSrc}
+                      download
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer"
+                      title="Download video"
+                    >
+                      <Download className="w-3.5 h-3.5 text-[#ff5500]" />
+                      <span className="hidden sm:inline">Download</span>
+                    </a>
+                  )}
+                  <button
+                    onClick={() => {
+                      setSelectedVideo(null);
+                      setShowreelModalOpen(false);
+                    }}
+                    className="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-neutral-300 hover:text-white transition-colors cursor-pointer"
+                    aria-label="Close modal"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
               </div>
-              <button
-                onClick={() => {
-                  setSelectedVideo(null);
-                  setShowreelModalOpen(false);
-                }}
-                className="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-neutral-300 hover:text-white transition-colors cursor-pointer"
-                aria-label="Close modal"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
 
-            {/* Video Player Box */}
-            <div className="relative aspect-video w-full bg-black flex items-center justify-center">
-              <iframe
-                className="w-full h-full"
-                src={
-                  showreelModalOpen
-                    ? 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1'
-                    : selectedVideo?.videoUrl || 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1'
-                }
-                title="Video preview"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
-
-            {/* Modal Footer Description */}
-            <div className="p-4 bg-[#0e1118] flex items-center justify-between gap-4">
-              <p className="text-xs text-neutral-300">
-                {showreelModalOpen
-                  ? 'Showcasing 5+ years of commercial, narrative, and social media edits using Premiere Pro, After Effects, and DaVinci Resolve.'
-                  : selectedVideo?.description}
-              </p>
-              <button
-                onClick={() => {
-                  setSelectedVideo(null);
-                  setShowreelModalOpen(false);
-                  scrollTo('contact');
-                }}
-                className="shrink-0 px-4 py-2 rounded-full text-xs font-bold bg-[#ff5500] hover:bg-[#ff681a] text-white transition-all cursor-pointer"
+              {/* Video Player Box */}
+              <div
+                className={`relative w-full bg-black flex items-center justify-center overflow-hidden ${
+                  isShortVertical ? 'aspect-[9/16] max-h-[68vh]' : 'aspect-video'
+                }`}
               >
-                Inquire About Similar Project
-              </button>
+                {isDirectVideo ? (
+                  <video
+                    key={videoSrc}
+                    src={videoSrc}
+                    controls
+                    autoPlay
+                    playsInline
+                    preload="auto"
+                    className="w-full h-full object-contain mx-auto"
+                  >
+                    Your browser does not support the video tag.
+                  </video>
+                ) : (
+                  <iframe
+                    className="w-full h-full"
+                    src={videoSrc}
+                    title="Video preview"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                )}
+              </div>
+
+              {/* Modal Footer Description */}
+              <div className="p-4 bg-[#0e1118] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                <p className="text-xs text-neutral-300 leading-relaxed">
+                  {showreelModalOpen
+                    ? 'Showcasing 5+ years of commercial, narrative, and social media edits using Premiere Pro, After Effects, and DaVinci Resolve.'
+                    : selectedVideo?.description}
+                </p>
+
+                <div className="flex items-center gap-2 shrink-0 w-full sm:w-auto">
+                  {isDirectVideo && (
+                    <a
+                      href={videoSrc}
+                      download
+                      className="flex-1 sm:flex-none text-center px-3.5 py-2 rounded-full text-xs font-semibold bg-white/10 hover:bg-white/15 text-white transition-all cursor-pointer inline-flex items-center justify-center gap-1.5"
+                    >
+                      <Download className="w-3.5 h-3.5" />
+                      Download Video
+                    </a>
+                  )}
+                  <button
+                    onClick={() => {
+                      setSelectedVideo(null);
+                      setShowreelModalOpen(false);
+                      scrollTo('contact');
+                    }}
+                    className="flex-1 sm:flex-none px-4 py-2 rounded-full text-xs font-bold bg-[#ff5500] hover:bg-[#ff681a] text-white transition-all cursor-pointer"
+                  >
+                    Inquire
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        );
+      })()}
 
     </div>
   );
